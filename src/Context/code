@@ -1,0 +1,29 @@
+
+
+function App() {
+    const [Office, setOffice] = useState([]);
+
+    const addEmployee = (employee) => {
+        setOffice(prev => [...prev, employee]);
+    };
+
+    return (
+        <OfficeContextProvider value={{ Office, addEmployee }}>
+            <h1>Office Attendance System</h1>
+            <div className='main-container'>
+                <div className='flex1'>
+                    <InputInfo />
+                </div>
+                <div className='flex2'>
+                    <div className='grid'>
+                        {Office.map((e) => (
+                            <AttendanceList key={e.id} employee={e} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </OfficeContextProvider>
+    );
+}
+
+export default App;
